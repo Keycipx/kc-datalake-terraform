@@ -27,3 +27,26 @@ variable "project_name" {
   type        = string
   default     = "datalake-lab"
 }
+
+variable "sql_admin_login" {
+  description = "Usuario administrador del SQL Server"
+  type        = string
+  default     = "sqladminkc"
+}
+
+variable "sql_admin_password" {
+  description = "Contrasena del administrador de SQL"
+  type        = string
+  sensitive   = true
+}
+
+variable "my_ip" {
+  description = "Tu IP publica para la regla de firewall"
+  type        = string
+}
+
+variable "sql_location" {
+  description = "Region para el SQL Server (puede diferir del resto)"
+  type        = string
+  default     = "mexicocentral"
+}
