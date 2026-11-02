@@ -10,15 +10,6 @@ resource "azurerm_data_factory_dataset_delimited_text" "raw_csv" {
   }
 
   column_delimiter    = ","
-  row_delimiter       = "\n"
   encoding            = "UTF-8"
   first_row_as_header = true
-}
-
-resource "azurerm_data_factory_dataset_azure_sql_table" "sql_vivienda" {
-  name              = "ds_sql_vivienda"
-  data_factory_id   = azurerm_data_factory.adf.id
-  linked_service_id = azurerm_data_factory_linked_service_azure_sql_database.sql.id
-  schema            = "dbo"
-  table             = "vivienda_hogar"
 }
