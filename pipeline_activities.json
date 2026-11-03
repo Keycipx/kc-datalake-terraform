@@ -1,0 +1,48 @@
+[
+    {
+        "name": "CopyRawToSQL",
+        "type": "Copy",
+        "dependsOn": [],
+        "policy": {
+            "timeout": "0.12:00:00",
+            "retry": 0,
+            "retryIntervalInSeconds": 30,
+            "secureOutput": false,
+            "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+            "source": {
+                "type": "DelimitedTextSource",
+                "storeSettings": {
+                    "type": "AzureBlobFSReadSettings",
+                    "recursive": true,
+                    "enablePartitionDiscovery": false
+                },
+                "formatSettings": {
+                    "type": "DelimitedTextReadSettings"
+                }
+            },
+            "sink": {
+                "type": "AzureSqlSink",
+                "preCopyScript": "DROP TABLE IF EXISTS dbo.vivienda_hogar;\nCREATE TABLE dbo.vivienda_hogar (\n[Clave1] nvarchar(255) NULL, [HHCLUST] nvarchar(255) NULL, [HHNUMBV] nvarchar(255) NULL, [HVNUMINT] nvarchar(255) NULL, [HHDEPAR] nvarchar(255) NULL, [HHMUNIC] nvarchar(255) NULL, [Area] nvarchar(255) NULL, [REGION] nvarchar(255) NULL, [PesoHogar] nvarchar(255) NULL, [HHINTD] nvarchar(255) NULL, [HHINTM] nvarchar(255) NULL, [HHINTY] nvarchar(255) NULL,\n[QHS1P01] nvarchar(255) NULL, [QHS1P02] nvarchar(255) NULL, [QHS1P03] nvarchar(255) NULL, [QHS1P04] nvarchar(255) NULL, [QHS1P05] nvarchar(255) NULL, [QHS1P06] nvarchar(255) NULL, [QHS1P07] nvarchar(255) NULL,\n[QHS1P08K] nvarchar(255) NULL, [QHS1P08M] nvarchar(255) NULL, [QHS1P08H] nvarchar(255) NULL, [QHS1P08MN] nvarchar(255) NULL,\n[QHS1P09] nvarchar(255) NULL, [QHS1P10] nvarchar(255) NULL, [QHS1P11] nvarchar(255) NULL, [QHS1P12] nvarchar(255) NULL, [QHS1P13] nvarchar(255) NULL, [QHS1P14] nvarchar(255) NULL,\n[QHS2P01A] nvarchar(255) NULL, [QHS2P01B] nvarchar(255) NULL, [QHS2P01C] nvarchar(255) NULL, [QHS2P01D] nvarchar(255) NULL, [QHS2P01E] nvarchar(255) NULL, [QHS2P01F] nvarchar(255) NULL, [QHS2P01G] nvarchar(255) NULL, [QHS2P01H] nvarchar(255) NULL, [QHS2P01I] nvarchar(255) NULL, [QHS2P01J] nvarchar(255) NULL, [QHS2P01K] nvarchar(255) NULL, [QHS2P01L] nvarchar(255) NULL, [QHS2P01M] nvarchar(255) NULL, [QHS2P01N] nvarchar(255) NULL, [QHS2P01O] nvarchar(255) NULL, [QHS2P01P] nvarchar(255) NULL, [QHS2P01Q] nvarchar(255) NULL, [QHS2P01R] nvarchar(255) NULL, [QHS2P01S] nvarchar(255) NULL,\n[QHS2P02A] nvarchar(255) NULL, [QHS2P02B] nvarchar(255) NULL, [QHS2P02C] nvarchar(255) NULL, [QHS2P02D] nvarchar(255) NULL, [QHS2P02E] nvarchar(255) NULL, [QHS2P02F] nvarchar(255) NULL, [QHS2P02G] nvarchar(255) NULL,\n[QHS2P03] nvarchar(255) NULL, [QHS2P04] nvarchar(255) NULL, [QHS2P05] nvarchar(255) NULL, [QHS2P06] nvarchar(255) NULL,\n[jefatura] nvarchar(255) NULL, [miembros] nvarchar(255) NULL\n);",
+                "writeBehavior": "insert",
+                "sqlWriterUseTableLock": false,
+                "disableMetricsCollection": false
+            },
+            "enableStaging": false
+        },
+        "inputs": [
+            {
+                "referenceName": "ds_raw_csv",
+                "type": "DatasetReference"
+            }
+        ],
+        "outputs": [
+            {
+                "referenceName": "ds_sql_vivienda",
+                "type": "DatasetReference"
+            }
+        ]
+    }
+]
