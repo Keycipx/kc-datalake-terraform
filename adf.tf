@@ -3,6 +3,11 @@ resource "azurerm_data_factory" "adf" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
+  tags = {
+    institucion = "INIDE"
+    componente  = "orquestacion"
+  }
+
   identity {
     type = "SystemAssigned"
   }

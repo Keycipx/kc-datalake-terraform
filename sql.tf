@@ -8,6 +8,7 @@ resource "azurerm_mssql_server" "sql" {
   minimum_tls_version          = "1.2"
 
   tags = {
+    institucion = "INIDE"
     environment = var.environment
     project     = var.project_name
   }

@@ -50,3 +50,18 @@ variable "sql_location" {
   type        = string
   default     = "mexicocentral"
 }
+
+variable "companero_object_id" {
+  description = "Id de la companera a la que se le asigna el rol de lector"
+  type        = string
+}
+
+variable "presupuesto_mensual" {
+  description = "Presupuesto mensual del proyecto en USD"
+  type        = number
+}
+
+variable "correo_alertas" {
+  description = "Correo que recibe las alertas del presupuesto"
+  type        = string
+}

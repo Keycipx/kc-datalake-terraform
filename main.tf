@@ -3,7 +3,13 @@
 resource "azurerm_resource_group" "rg" {
   name     = var.resource_group_name
   location = var.location
+
+  tags = {
+    institucion = "INIDE"
+    componente  = "grupo-de-recursos"
+  }
 }
+
 
 resource "azurerm_storage_account" "adls" {
   name                     = var.storage_account_name
@@ -15,6 +21,7 @@ resource "azurerm_storage_account" "adls" {
   is_hns_enabled           = true
 
   tags = {
+    institucion = "INIDE"
     environment = var.environment
     project     = var.project_name
   }
